@@ -1,0 +1,13 @@
+1. We gather the data from Kaggle - Give me some credit
+2. The dataset is already divided into two datas - Train, Test
+3. We apply EDA on both:
+    a. notebooks\01_data_exploration.ipynb is the notebook in which EDA is performed for Test data
+    b. notebooks\02_data_exploration.ipynb is the notebook in which EDA is performed for Train data
+4. In Train data after imputing the null values and checking we see the data is highly imbalanced so we apply SMOTE
+5. SMOTE is Synthetic Minority Over-sampling Technique which generates new, synthetic data points for the minority class rather than just copying existing ones.
+6. The Step-by-Step Process:
+    Select a Point: SMOTE picks a random point from the minority class (let's call it Point A).
+    Find Neighbors: It finds the k-nearest neighbors (usually k=5) for Point A.
+    Draw a Line: It draws an imaginary line between Point A and one of its neighbors (Point B).
+    Place a New Point: It picks a random spot along that line. This spot becomes a new, synthetic data point.
+7. After we balance the Train Data we apply 2 Machine Learning Models too check the accuracy of Logistic Regression or Random Forest.

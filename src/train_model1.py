@@ -1,7 +1,8 @@
 from data_preprocessing import loan_preprocessing
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 import os
 import joblib
@@ -32,13 +33,19 @@ X_train_res, y_train_res = smote.fit_resample(X_train, y_train)
 print("Resampled Class Distribution:")
 print(pd.Series(y_train_res).value_counts())
 
-# Train model
-rf = RandomForestClassifier(n_estimators=250,max_depth=12,min_samples_split=4,min_samples_leaf=2,random_state=42,n_jobs=-1)
+# Feature scaling
+scaler = StandardScaler()
+X_train_res = scaler.fit_transform(X_train_res)
+X_test = scaler.transform(X_test)
 
-rf.fit(X_train_res, y_train_res)
+# Initialize the model
+model = LogisticRegression(max_iter=1000)
+
+# Fit the model to the training data
+model.fit(X_train_res, y_train_res)
 
 # Save trained model
 os.makedirs("../models", exist_ok=True)
-joblib.dump(rf, "../models/random_forest_model.pkl")
-
+joblib.dump(model, "../models/logistic_regression_model.pkl")
+joblib.dump(scaler, "../models/scaler.pkl")
 print("Model saved successfully.")

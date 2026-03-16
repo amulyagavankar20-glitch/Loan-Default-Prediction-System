@@ -1,3 +1,34 @@
-venv/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-git__
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Large datasets (optional)
+Data/
+
+git__.txt
